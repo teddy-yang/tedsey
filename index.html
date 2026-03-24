@@ -1,127 +1,391 @@
-<!DOCTYPE HTML>
-<!--
-	Directive by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<!-- for FF, Chrome, Opera -->
-	<link rel="icon" type="image/png" href="/assets/favicons/favicon-16x16.png" sizes="16x16">
-	<link rel="icon" type="image/png" href="/assets/favicons/favicon-32x32.png" sizes="32x32">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tedsey — Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-	<!-- for IE -->
-	<link rel="icon" type="image/x-icon" href="/assets/favicons/favicon.ico">
-	<link rel="shortcut icon" type="image/x-icon" href="/assets/favicons/favicon.ico" />
+    :root {
+      --bg:      #0a0b0e;
+      --bg2:     #111318;
+      --bg3:     #181c24;
+      --border:  rgba(255,255,255,0.06);
+      --border2: rgba(255,255,255,0.11);
+      --text:    #dde0e8;
+      --muted:   #5a6070;
+      --muted2:  #8892a4;
+      --gold:    #c8a96e;
+      --gold-bg: rgba(200,169,110,0.1);
+    }
 
-	<link rel="icon" type="image/ico" href="/favicon.ico">
-	<title>Tedsey</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 40% at 50% 0%, rgba(200,169,110,0.05) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 28px 80px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 72px 0 56px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 22px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(40px, 6.5vw, 64px);
+      font-weight: 700;
+      line-height: 1.06;
+      letter-spacing: -2px;
+      color: #f0f2f5;
+      margin-bottom: 18px;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      color: var(--muted2);
+      font-weight: 300;
+      max-width: 440px;
+      line-height: 1.7;
+    }
+
+    /* ── Sections ── */
+    .section { margin-top: 52px; }
+
+    .section-title {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── Cards ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
+      gap: 10px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.18s, background 0.18s, transform 0.14s;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* coloured top bar */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--c, transparent);
+      opacity: 0;
+      transition: opacity 0.18s;
+    }
+
+    .card:hover {
+      background: var(--bg3);
+      border-color: var(--border2);
+      transform: translateY(-2px);
+    }
+
+    .card:hover::before { opacity: 1; }
+    .card:active { transform: translateY(0); }
+
+    .card-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    .card-icon svg {
+      width: 19px;
+      height: 19px;
+      color: var(--c, var(--muted2));
+    }
+
+    .card-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: #f0f2f5;
+      margin-bottom: 5px;
+      letter-spacing: -0.3px;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: var(--muted2);
+      line-height: 1.55;
+      flex: 1;
+    }
+
+    .card-url {
+      margin-top: 15px;
+      font-size: 11px;
+      font-family: 'Inter', monospace;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      letter-spacing: 0.01em;
+      transition: color 0.15s;
+    }
+
+    .card-url svg { width: 10px; height: 10px; }
+    .card:hover .card-url { color: var(--c, var(--muted2)); }
+
+    /* colour tokens per card */
+    .c-orange { --c: #fb923c; }
+    .c-blue   { --c: #60a5fa; }
+    .c-pink   { --c: #f472b6; }
+    .c-green  { --c: #34d399; }
+    .c-purple { --c: #a78bfa; }
+    .c-gold   { --c: #c8a96e; }
+    .c-teal   { --c: #22d3ee; }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 72px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    footer p { font-size: 12px; color: var(--muted); }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #34d399;
+      animation: blink 2.8s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.3; }
+    }
+
+    @media (max-width: 540px) {
+      .hero { padding: 48px 0 36px; }
+      .grid { grid-template-columns: 1fr; }
+      .section { margin-top: 40px; }
+    }
+  </style>
 </head>
+<body>
+<div class="page">
 
-<body class="is-preload">
+  <header class="hero">
+    <p class="eyebrow">Home of Teddy &amp; Casey</p>
+    <h1>Welcome to<br /><em>Tedsey</em></h1>
+    <p class="hero-sub">Your home media hub — links to every service running on the home server.</p>
+  </header>
 
-	<!-- Header -->
-	<div id="header">
-		<span class="logo icon fa-home"></span>
-		<h1>Hi! Welcome to <font color="red">T</font>
-			<font color="orange">e</font>
-			<font color="yellow">d</font>
-			<font color="indiego">s</font>
-			<font color="#003EFF">e</font>
-			<font color="magenta">y</font>
-		</h1>
-		<h2>The home of <font color="#00FF00">Teddy</font> and <font color="magenta">Casey</font>
-		</h2>
-	</div>
+  <!-- Media & Streaming -->
+  <section class="section">
+    <h2 class="section-title">Media &amp; Streaming</h2>
+    <div class="grid">
 
-	<!-- Main -->
-	<div id="main">
+      <a class="card c-gold" href="https://plex.tedsey.com" target="_blank" rel="noopener">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l7 4.5-7 4.5z"/></svg>
+        </div>
+        <div class="card-name">Plex</div>
+        <div class="card-desc">Stream your home media library on any device, anywhere.</div>
+        <div class="card-url">
+          <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg>
+          plex.tedsey.com
+        </div>
+      </a>
 
-		<header class="major container medium">
-			<h2>This is the home page
-				<br />
-				for information and links
-				<br />
-				to our home media
-			</h2>
-			<!--
-					<p>Tellus erat mauris ipsum fermentum<br />
-					etiam vivamus nunc nibh morbi.</p>
-					-->
-		</header>
+    </div>
+  </section>
 
-		<div class="box alt container">
-			<section class="feature left">
-				<a href="https://sonarr.tedsey.com" class="image icon fa-tv"><img src="images/pic01.jpg" alt="" /></a>
-				<div class="content">
-					<h3>Sonarr - TV Show</h3>
-					<p>Sonarr is used to manage TV Show downloads.</p>
-				</div>
-			</section>
-			<section class="feature right">
-				<a href="https://radarr.tedsey.com" class="image icon fa-film"><img src="images/pic02.jpg" alt="" /></a>
-				<div class="content">
-					<h3>Radarr - Movies</h3>
-					<p>Radarr is used to manage Movies downloads.</p>
-				</div>
-			</section>
-			<section class="feature left">
-				<a href="http://deluge.tedsey.com" class="image icon fa-download"><img src="images/pic03.jpg"
-						alt="" /></a>
-				<div class="content">
-					<h3>deluge - Torrent Web Client</h3>
-					<p>deluge is used to download torrent tasks for Sonarr and Radarr.</p>
-				</div>
-			</section>
-			<section class="feature right">
-				<a href="http://sabnzbd.tedsey.com" class="image icon fa-download"><img src="images/pic03.jpg"
-						alt="" /></a>
-				<div class="content">
-					<h3>SABnzbd - Usenet Web Client</h3>
-					<p>SABnzbd is used to download usnet tasks for Sonarr and Radarr.</p>
-				</div>
-			</section>
-			<section class="feature left">
-				<a href="https://jackett.tedsey.com" class="image icon fa-indent"><img src="images/pic02.jpg"
-						alt="" /></a>
-				<div class="content">
-					<h3>Jackett - Indexer management</h3>
-					<p>Jackett is used to add or remove indexers for Sonarr and Radarr.</p>
-				</div>
-			</section>
-			<section class="feature right">
-				<a href="https://plex.tedsey.com" class="image icon fa-play-circle"><img src="images/pic01.jpg"
-						alt="" /></a>
-				<div class="content">
-					<h3>Plex - Media Player</h3>
-					<p>Plex is used to play contents on home plex media servers</p>
-				</div>
-			</section>
-		</div>
-		<footer class="major container medium">
-			<h3>Enjoy</h3>
-		</footer>
-	</div>
+  <!-- Download Management -->
+  <section class="section">
+    <h2 class="section-title">Download Management</h2>
+    <div class="grid">
 
-	<!-- Footer -->
-	<div id="footer">
-		<div class="container medium">
-			<ul class="copyright">
-				<li>&copy; Tedsey. All rights reserved.</li>
-			</ul>
-		</div>
-	</div>
-	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
+      <a class="card c-orange" href="https://sonarr.tedsey.com" target="_blank" rel="noopener">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 8l3 3 5-5"/></svg>
+        </div>
+        <div class="card-name">Sonarr</div>
+        <div class="card-desc">Manages TV show downloads automatically.</div>
+        <div class="card-url">
+          <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg>
+          sonarr.tedsey.com
+        </div>
+      </a>
 
+      <a class="card c-blue" href="https://radarr.tedsey.com" target="_blank" rel="noopener">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M16 2v4M8 2v4"/><path d="M3 10h18M7 14h.01M12 14h.01M17 14h.01M7 18h.01M12 18h.01"/></svg>
+        </div>
+        <div class="card-name">Radarr</div>
+        <div class="card-desc">Manages movie downloads automatically.</div>
+        <div class="card-url">
+          <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg>
+          radarr.tedsey.com
+        </div>
+      </a>
+
+      <a class="card c-pink" href="https://prowlarr.tedsey.com" target="_blank" rel="noopener">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/><path d="M8 11h6M11 8v6"/></svg>
+        </div>
+        <div class="card-name">Prowlarr</div>
+        <div class="card-desc">Indexer manager for Sonarr and Radarr.</div>
+        <div class="card-url">
+          <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg>
+          prowlarr.tedsey.com
+        </div>
+      </a>
+
+      <a class="card c-green" href="http://deluge.tedsey.com" target="_blank" rel="noopener">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"/></svg>
+        </div>
+        <div class="card-name">Deluge</div>
+        <div class="card-desc">Torrent web client for download tasks.</div>
+        <div class="card-url">
+          <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg>
+          deluge.tedsey.com
+        </div>
+      </a>
+
+      <a class="card c-purple" href="http://sabnzbd.tedsey.com" target="_blank" rel="noopener">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </div>
+        <div class="card-name">SABnzbd</div>
+        <div class="card-desc">Usenet web client for download tasks.</div>
+        <div class="card-url">
+          <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg>
+          sabnzbd.tedsey.com
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Books -->
+  <section class="section">
+    <h2 class="section-title">Books</h2>
+    <div class="grid">
+
+      <a class="card c-teal" href="https://bookdownloader.tedsey.com" target="_blank" rel="noopener">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M12 10v4M10 12h4"/></svg>
+        </div>
+        <div class="card-name">Book Downloader</div>
+        <div class="card-desc">Search and download ebooks to your library.</div>
+        <div class="card-url">
+          <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg>
+          bookdownloader.tedsey.com
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <footer>
+    <p>© Tedsey. All rights reserved.</p>
+    <div class="status">
+      <div class="dot"></div>
+      all systems running
+    </div>
+  </footer>
+
+</div>
 </body>
-
 </html>
